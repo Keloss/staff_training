@@ -34,7 +34,7 @@ const Auth = observer(() => {
         }
         employer.setEmployer(employer)
         employer.setIsAuth(true)
-        navigate(LOGIN_ROUTE)
+        navigate('/')
         } catch(e){
             alert(e.response.data.message)
         }
@@ -50,7 +50,7 @@ const Auth = observer(() => {
                 <Form className="d-flex flex-column">
                     <Form.Control className="mt-4" placeholder="Введите ваше ФИО..." value={fullname} onChange={e => setFullname(e.target.value)}/>
                     <Form.Control className="mt-4" placeholder="Введите ваш email..." value={email} onChange={e => setEmail(e.target.value)}/>
-                    <Form.Control className="mt-4" placeholder="Введите ваш пароль..." value={password} onChange={e => setPassword(e.target.value)}/>
+                    <Form.Control className="mt-4" placeholder="Введите ваш пароль..." type="password" value={password} onChange={e => setPassword(e.target.value)}/>
                     <Row className="d-flex justify-content-between mt-4">
                        {isLogin ?
                         <div>

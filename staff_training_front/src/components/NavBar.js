@@ -12,7 +12,7 @@ const NavBar = observer( () => {
     const navigate = useNavigate()
 
     const logOut = () => {
-        employer.setEmployer =({})
+        employer.setEmployer({})
         employer.setIsAuth(false)
     }
 

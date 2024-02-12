@@ -15,7 +15,15 @@ export const login = async (Employer_Name, email, password) => {
 }
 
 export const check = async () => {
-    const {data} = await $authHost.post('api/employer/auth')
-    localStorage.setItem('token', data.token)
-    return jwt_decode(data.token)
+    let response
+    try {
+        response = await $authHost.post('api/employer/auth')
+    }
+    catch(response)
+    {
+        return null
+    }
+    console.log(response)
+    localStorage.setItem('token', response.data.token)
+    return jwt_decode(response.data.token)
 }

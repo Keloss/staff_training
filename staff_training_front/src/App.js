@@ -11,11 +11,23 @@ const App = observer(() => {
   const {employer} = useContext(Context)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-      check().then(data => {
-        employer.setEmployer(true)
+  const fetchData = async() => {
+    try {
+      const isAuth = await check()
+      if (isAuth) {
+        employer.setEmployer(isAuth)
         employer.setIsAuth(true)
-      }).finally(() => setLoading(false))
+      }
+    } catch(e)
+    {
+      console.log(e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
   }, [])
 
   if(loading){
