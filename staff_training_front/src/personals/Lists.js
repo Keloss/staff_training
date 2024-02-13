@@ -3,10 +3,8 @@ import { makeAutoObservable } from "mobx";
 export default class Lists {
     constructor(){
         this._types = [
-            {id: 1, name: "Группы"},
-            {id: 2, name: "Курсы"},
-            {id: 3, name: "Преподаватели"},
-            {id: 4, name: "Справочник"}
+            {id: 1, name: "Работники", href: "/workers"},
+            {id: 2, name: "Справочники", href: "/sprav"}
         ]
         this._selectedType = {}
         makeAutoObservable(this)

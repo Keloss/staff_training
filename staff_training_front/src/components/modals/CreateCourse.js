@@ -17,7 +17,10 @@ const CreateTeacher = ({show, onHide}) => {
             </Modal.Header>
             <Modal.Body>
                <Form>
-                    <Form.Control placeholder={"Введите наименование курса"}/>
+                    <Form.Control className="mt-3" placeholder={"Введите наименование курса"}/>
+                    <Form.Control className="mt-3" placeholder={"Введите максимальное кол-во обучающихся курса"}/>
+                    <Form.Control className="mt-3" placeholder={"Введите дату начала курса"}/>
+                    <Form.Control className="mt-3" placeholder={"Введите дату конца курса"}/>
                 </Form> 
             </Modal.Body>
             <Modal.Footer>

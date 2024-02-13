@@ -14,6 +14,7 @@ const NavBar = observer( () => {
     const logOut = () => {
         employer.setEmployer({})
         employer.setIsAuth(false)
+        employer.setRole({})
         localStorage.clear()
     }
 

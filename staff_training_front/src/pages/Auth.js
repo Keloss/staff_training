@@ -34,6 +34,7 @@ const Auth = observer(() => {
         }
         employer.setEmployer(employer)
         employer.setIsAuth(true)
+        //employer.setRole('USER')
         navigate('/')
         } catch(e){
             alert(e.response.data.message)

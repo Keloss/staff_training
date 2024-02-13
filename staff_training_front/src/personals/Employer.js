@@ -4,6 +4,7 @@ export default class Employer {
     constructor() {
         this._isAuth = false
         this._employer = {}
+        this._role=''
         makeAutoObservable(this)
     }
 
@@ -12,6 +13,15 @@ export default class Employer {
     }
     setEmployer(employer){
         this._employer = employer
+    }
+
+    setRole(role){
+        this._role = role
+    }
+
+    get role()
+    {
+        return this._role
     }
 
     get isAuth(){
