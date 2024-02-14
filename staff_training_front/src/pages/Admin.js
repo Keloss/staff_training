@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import CreateTeacher from "../components/modals/CreateTeacher";
 import CreateGroup from "../components/modals/CreateGroup";
-import CreateStudent from "../components/modals/CreateStudent";
+import AddWorkerToGroup from "../components/modals/AddWorkerToGroup";
 
 const Admin = () => {
     const [teacherVisible, setTeacherVisible] = useState(false);

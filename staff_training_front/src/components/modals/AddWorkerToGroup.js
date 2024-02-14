@@ -6,7 +6,7 @@ import { fetchGroup, fetchWorker } from "../../http/GroupAPI";
 import { observer } from "mobx-react-lite";
 import { createWorker } from "../../http/GroupAPI";
 
-const CreateStudent = observer(({show, onHide}) => {
+const AddWorkerToGroup = observer(({show, onHide}) => {
 
     const {worker} = useContext(Context)
 
@@ -86,4 +86,4 @@ const CreateStudent = observer(({show, onHide}) => {
     );
 });
 
-export default CreateStudent;
+export default AddWorkerToGroup;

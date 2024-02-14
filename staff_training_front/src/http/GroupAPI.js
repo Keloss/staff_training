@@ -1,15 +1,6 @@
 import { $host, $authHost } from "./index";
 
 
-// export const addWorkerToGroup = async (workerId, groupId) => {
-//     try {
-//         const response = await $host.post('api/addworker', {workerId, groupId});
-//         console.log(response.data)
-//     } catch(error){
-//         console.log(error)
-//     }
-// }
-
 export const createGroup = async (group) => {
     console.log(group)
     const {data} = await $authHost.post('/api/group', group)
