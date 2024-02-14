@@ -16,13 +16,17 @@ const Employer = sequelize.define('employer', {
 const worker = sequelize.define('worker', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false},
-    tub: {type: DataTypes.INTEGER, unique: true, allowNull: false}
+    tub: {type: DataTypes.INTEGER, unique: true, allowNull: false},
 })
 
 const group = sequelize.define('group', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.STRING, allowNull: false}
+    group_name: {type: DataTypes.STRING, unique: true, allowNull: false}
 })
+
+
+group.hasMany(worker)
+worker.belongsTo(group)
 
 
 module.exports = {

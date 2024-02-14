@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Employer from './personals/Employer';
-import Lists from './personals/Lists';
+import Workers from './personals/Workers';
 
 export const Context = createContext(null);
 console.log('http://localhost:5000/')
@@ -10,7 +10,7 @@ console.log('http://localhost:5000/')
 ReactDOM.render(
   <Context.Provider value={ {
     employer: new Employer(),
-    lists: new Lists()
+    worker: new Workers()
   }}>
     <App />
   </Context.Provider>,  

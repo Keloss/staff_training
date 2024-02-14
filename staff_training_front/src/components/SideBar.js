@@ -9,7 +9,7 @@ const SideBar = observer(() => {
     const navigate = useNavigate()
     return (
         <Sidebar>
-            <Sidebar.ItemGroup>
+            <Sidebar.ItemGroup className='list-none'>
               <Sidebar.Item>
                 <Button variant={"outline-dark"} className='mt-4' onClick={() => navigate(WORKER_ROUTE)}>Работники</Button>
               </Sidebar.Item>
