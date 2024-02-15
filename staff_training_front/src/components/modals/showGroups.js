@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button, Dropdown, Form } from "react-bootstrap";
 import { Context } from "../../index";
 import { fetchGroup, fetchWorker, fetchWorkersOfGroup } from "../../http/GroupAPI";
 import { observer } from "mobx-react-lite";
-import { toJS } from "mobx";
 
 const ShowGroup = observer(({show, onHide}) => {
 
