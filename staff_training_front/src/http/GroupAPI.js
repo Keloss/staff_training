@@ -13,12 +13,23 @@ export const fetchGroup = async () => {
 }
 
 export const createWorker = async (worker) => {
-    console.log(worker[0])
     const {data} = await $authHost.post('/api/worker', worker[0])
     return data
 }
 
 export const fetchWorker = async () => {
     const {data} = await $host.get('/api/worker')
+    return data
+}
+
+export const addToGroup = async (wg) => {
+    console.log(wg)
+    const {data} = await $authHost.post('/api/addtogroup', wg[0])
+    return data
+}
+
+export const fetchWorkersOfGroup = async (id) => {
+    console.log(id)
+    const {data} = await $host.get(`/api/addtogroup/${id}`)
     return data
 }

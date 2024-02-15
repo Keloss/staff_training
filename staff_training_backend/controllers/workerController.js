@@ -4,8 +4,8 @@ const ApiError = require('../error/ApiError')
 class workerController{
     async create(req, res, next){
         try {
-            const {name, tub, groupId} = req.body
-            const workers = await worker.create({name, tub, groupId})
+            const {name, tub} = req.body
+            const workers = await worker.create({name, tub})
             return res.json(workers)
         } catch(e){
             next(ApiError.badRequest(e.message))
@@ -13,14 +13,7 @@ class workerController{
     }
 
     async getAll(req, res){
-        const {groupId} = req.query
-        let workers;
-        if (!groupId){
-            workers = await worker.findAll()
-        }
-        if (groupId){
-            workers = await worker.findAll({where: {groupId}})
-        }
+        const workers = await worker.findAll()
         return res.json(workers)
     }
 

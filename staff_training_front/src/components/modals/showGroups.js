@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button, Dropdown, Form } from "react-bootstrap";
 import { Context } from "../../index";
-import { fetchGroup, fetchWorker } from "../../http/GroupAPI";
+import { fetchGroup, fetchWorker, fetchWorkersOfGroup } from "../../http/GroupAPI";
 import { observer } from "mobx-react-lite";
+import { toJS } from "mobx";
 
 const ShowGroup = observer(({show, onHide}) => {
 
@@ -12,14 +13,18 @@ const ShowGroup = observer(({show, onHide}) => {
     useEffect(() => {
         fetchGroup().then(data => worker.setGroups(data))
         fetchWorker().then(data => worker.setWorkers(data))
+
     }, [])
 
-    const ShowWorkerOfGroup = () => {
-        const formData = new FormData()
-        formData.append('groupId', worker.selectedGroup.id)
-        fetchGroup()
-    }
-
+    useEffect(() => {
+        if (worker.selectedCurrentGroup)
+        {
+            fetchWorkersOfGroup(worker.selectedCurrentGroup).then(data => {
+                worker.setCurrentGroup(data)
+            })
+        }
+        
+    }, [worker.selectedCurrentGroup])
 
     return (
         <Modal
@@ -36,14 +41,17 @@ const ShowGroup = observer(({show, onHide}) => {
             <Modal.Body>
                 <Form>
                     {worker.groups.map(group => (
-                        <Dropdown className="mt-3 d-flex flex-column">
-                                <Dropdown.Toggle>
+                        <Dropdown className="mt-3 d-flex flex-column" onClick={() => worker.setSelectedCurrentGroup(group.id)}>
+                                <Dropdown.Toggle >
                                     {group.group_name}
-                                    <Dropdown.Menu>
-                                        {worker.workers.map(work => (
-                                            <Dropdown.ItemText onClick={() => ShowWorkerOfGroup()}key={group.id}>{work.name}</Dropdown.ItemText>
-                                        ))}
-                                    </Dropdown.Menu>
+                                        <Dropdown.Menu>
+                                            {worker.CurrentGroup.map(work => (
+                                                <Dropdown.ItemText key={work.id}>
+                                                    {work.worker.name}
+                                                </Dropdown.ItemText>
+                                            ))}
+                                        </Dropdown.Menu>
+                                    
                                 </Dropdown.Toggle>
                             </Dropdown>
                     ))}

@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button, Dropdown, Form } from "react-bootstrap";
 import { Context } from "../../index";
 import { fetchGroup, fetchWorker } from "../../http/GroupAPI";
 import { observer } from "mobx-react-lite";
-import { createWorker } from "../../http/GroupAPI";
+import { addToGroup } from "../../http/GroupAPI";
 
 const AddWorkerToGroup = observer(({show, onHide}) => {
 
@@ -15,19 +15,14 @@ const AddWorkerToGroup = observer(({show, onHide}) => {
         fetchWorker().then(data => worker.setWorkers(data))
     }, [])
 
-    const  [name, setName] = useState('')
-    const  [tub, setTub] = useState('')
-
     const addWorkerToGroup = () => {
         const formData = new FormData()
-        formData.append('name', name)
-        formData.append('tub', tub)
         formData.append('groupId', worker.selectedGroup.id)
-        const worker_name = formData.get('name')
-        const worker_tub = formData.get('tub')
+        formData.append('workerId', worker.selectedWorker.id)
         const group_ID = formData.get('groupId')
-        const dataOfWorker = [{name: worker_name, tub: worker_tub, groupId: group_ID}]
-        createWorker(dataOfWorker).then(data => onHide())
+        const worker_ID = formData.get('workerId')
+        const dataOfWorker = [{workerId: worker_ID, groupId: group_ID}]
+        addToGroup(dataOfWorker).then(data => onHide())
     }
 
     return (
@@ -45,7 +40,10 @@ const AddWorkerToGroup = observer(({show, onHide}) => {
             <Modal.Body>
                <Form>
                 <Dropdown className="mt-3">
-                    <Dropdown.Toggle>{worker.selectedWorker.name || "Выберите работника"}</Dropdown.Toggle>
+                    <Dropdown.Toggle>
+                        { worker.selectedWorker.name && worker.selectedWorker.name ?
+                         `${worker.selectedWorker.name} / ${worker.selectedWorker.tub}` : "Выберите работника"}
+                    </Dropdown.Toggle>
                         <Dropdown.Menu>
                             {worker.workers.map(work => (
                                 <Dropdown.Item onClick={() => worker.setSelectedWorker(work)} key = {work.id}>
@@ -54,18 +52,6 @@ const AddWorkerToGroup = observer(({show, onHide}) => {
                             ))}
                         </Dropdown.Menu>
                 </Dropdown>
-                <Form>
-                    <Form.Control className="mt-3"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    placeholder={"Введите ФИО работника"}/>
-                </Form> 
-                <Form>
-                    <Form.Control className="mt-3"
-                    value={tub}
-                    onChange={e => setTub(e.target.value)}
-                    placeholder={"Введите табельный номер работника"}/>
-                </Form> 
                 <Dropdown className="mt-3">
                     <Dropdown.Toggle>{worker.selectedGroup.group_name || "Выберите группу"}</Dropdown.Toggle>
                         <Dropdown.Menu>

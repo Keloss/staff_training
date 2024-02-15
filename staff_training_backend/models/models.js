@@ -24,13 +24,21 @@ const group = sequelize.define('group', {
     group_name: {type: DataTypes.STRING, unique: true, allowNull: false}
 })
 
+const WGroup = sequelize.define('WGroup', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    workerId: {type: DataTypes.INTEGER},
+    groupId: {type: DataTypes.INTEGER}
+})
 
-group.hasMany(worker)
-worker.belongsTo(group)
+worker.hasMany(WGroup)
+WGroup.belongsTo(worker)
 
+group.hasMany(WGroup)
+WGroup.belongsTo(group)
 
 module.exports = {
     Employer,
     worker,
-    group
+    group,
+    WGroup
 }
