@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import { Button, Form } from "react-bootstrap";
 
-const Sprav = ({show, onHide}) => {
+const Sprav_SPK = ({show, onHide}) => {
     return (
         <Modal
             show={show} 
@@ -12,7 +12,7 @@ const Sprav = ({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id = "contained-modal-title-vcenter">
-                    Наименование должностей
+                    СПК
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -27,4 +27,4 @@ const Sprav = ({show, onHide}) => {
     );
 }
 
-export default Sprav;
+export default Sprav_SPK;
