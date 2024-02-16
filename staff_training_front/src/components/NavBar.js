@@ -21,7 +21,7 @@ const NavBar = observer( () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Button variant={"outline-light"} to={MAIN_ROUTE}>Main</Button>
+                <Button variant={"outline-light"} onClick={() => navigate(MAIN_ROUTE)}>Main</Button>
                 {employer.isAuth ?
                     <Nav style={{color: "white"}}>
                         <Button variant={"outline-light"} onClick={() => navigate(ADMIN_ROUTE)}>Админ панель</Button>
