@@ -12,7 +12,6 @@ const ShowGroup = observer(({show, onHide}) => {
     useEffect(() => {
         fetchGroup().then(data => worker.setGroups(data))
         fetchWorker().then(data => worker.setWorkers(data))
-
     }, [])
 
     useEffect(() => {
@@ -22,7 +21,6 @@ const ShowGroup = observer(({show, onHide}) => {
                 worker.setCurrentGroup(data)
             })
         }
-        
     }, [worker.selectedCurrentGroup])
 
     return (
@@ -46,7 +44,7 @@ const ShowGroup = observer(({show, onHide}) => {
                                         <Dropdown.Menu>
                                             {worker.CurrentGroup.map(work => (
                                                 <Dropdown.ItemText key={work.id}>
-                                                    {work.worker.name}
+                                                    {work.worker.name} / {work.worker.tub}
                                                 </Dropdown.ItemText>
                                             ))}
                                         </Dropdown.Menu>

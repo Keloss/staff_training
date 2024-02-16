@@ -21,9 +21,9 @@ const NavBar = observer( () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <NavLink style={{color: "white"}} to={MAIN_ROUTE}>Main</NavLink>
+                <Button variant={"outline-light"} to={MAIN_ROUTE}>Main</Button>
                 {employer.isAuth ?
-                    <Nav className="ml-auto" style={{color: "white"}}>
+                    <Nav style={{color: "white"}}>
                         <Button variant={"outline-light"} onClick={() => navigate(ADMIN_ROUTE)}>Админ панель</Button>
                         <Button variant={"outline-light"} onClick={() => logOut()} className="ml-4">Выйти</Button>
                     </Nav>
